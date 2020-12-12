@@ -1,0 +1,141 @@
+//
+//  SearchViewController.swift
+//  iNASA
+//
+//  Created by Андрей Останин on 08.12.2020.
+//
+
+// MARK: - Search & CollectionView
+
+import Foundation
+import UIKit
+
+class SearchViewController: UIViewController {
+    
+    private var searchTextField = SearchTextField()
+    private var searchButton = CustomButton()
+    private var collectionView: UICollectionView!
+    private let stackView = UIStackView()
+    private let collectionVM = CollectionViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        collectionVM.fetchMainScreen {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+        
+        setupSearchElements()
+        setupCollection()
+    }
+    
+    private func setupSearchElements() {
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        searchTextField.delegate = self
+        searchTextField.returnKeyType = UIReturnKeyType.done
+        
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(searchTextField)
+        stackView.addArrangedSubview(searchButton)
+         
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(searchButton)
+        
+        searchTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchButton.setTitle("Find", for: .normal)
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+        
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            searchTextField.heightAnchor.constraint(equalToConstant: 50),
+            searchButton.heightAnchor.constraint(equalToConstant: 50),
+            searchButton.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
+    private func setupCollection() {
+        let layout = UICollectionViewFlowLayout()
+        let width = view.frame.width / 2 - 10
+        layout.itemSize = CGSize(width: width, height: width)
+        
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+                                          collectionViewLayout: layout)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+        ])
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(UINib(nibName: K.ThumbCell.nibName, bundle: nil),
+                                forCellWithReuseIdentifier: K.ThumbCell.reuseID)
+    }
+    
+    @objc private func searchButtonPressed() {
+        let vc = SearchResultViewController(viewModel: collectionVM,
+                                            quiery: searchTextField.text!)
+        navigationController?.pushViewController(vc, animated: true)
+        searchTextField.resignFirstResponder()
+    }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionVM.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.ThumbCell.reuseID, for: indexPath) as! ThumbCell
+        
+        if let vm = collectionVM.getElemVM(index: indexPath.item) {
+            cell.configure(itemVM: vm)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vm = collectionVM.getElemVM(index: indexPath.item) else {
+            print("error getting vm")
+            return
+        }
+        let vc = DetailedInfoViewController(itemVM: vm)
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+}
