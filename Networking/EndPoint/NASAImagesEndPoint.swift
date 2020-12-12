@@ -22,14 +22,18 @@ extension NASAImageLibraryAPI: EndPointType {
     var stringBaseURL: String {
         switch self {
         case .image(let url):
-            return url
+            let safeUrl = url.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+            return safeUrl ?? url
         default:
             return "https://images-api.nasa.gov/"
         }
     }
     
     public var baseURL: URL {
-        guard let url = URL(string: stringBaseURL) else { fatalError() }
+        guard let url = URL(string: stringBaseURL) else {
+            print(stringBaseURL)
+            fatalError()
+        }
         
         return url
     }

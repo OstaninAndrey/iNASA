@@ -97,6 +97,7 @@ class SearchViewController: UIViewController {
                                             quiery: searchTextField.text!)
         navigationController?.pushViewController(vc, animated: true)
         searchTextField.resignFirstResponder()
+        searchTextField.text = ""
     }
 }
 
