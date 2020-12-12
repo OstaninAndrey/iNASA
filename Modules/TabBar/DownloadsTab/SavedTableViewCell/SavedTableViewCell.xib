@@ -62,6 +62,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="o7s-rT-bra" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Nc4-YE-q6u"/>
                     <constraint firstAttribute="bottom" secondItem="o7s-rT-bra" secondAttribute="bottom" id="g4E-iq-Rd5"/>
