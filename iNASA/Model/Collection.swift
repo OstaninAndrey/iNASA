@@ -19,8 +19,20 @@ struct CollectionModel: Decodable {
     let items: [Item]
 }
 
-struct Metadata: Decodable {
-    let total_hits: Int
+struct Metadata {
+    let totalHits: Int
+}
+
+extension Metadata: Decodable {
+    private enum metadataCodingKeys: String, CodingKey {
+        case totalHits = "total_hits"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: metadataCodingKeys.self)
+            
+        totalHits = try container.decode(Int.self, forKey: .totalHits)
+    }
 }
  
 struct Item: Decodable {
@@ -35,11 +47,30 @@ struct Link: Decodable {
     let rel: String
 }
 
-struct ItemData: Decodable {
-    let media_type: String
-    let nasa_id: String
+struct ItemData {
+    let mediaType: String
+    let nasaId: String
     let description: String
-    let date_created: String
-    let location: String?
+    let dateCreated: String
     let title: String
+}
+
+extension ItemData: Decodable {
+    private enum ItemDataCodingKeys: String, CodingKey {
+        case mediaType = "media_type"
+        case nasaId = "nasa_id"
+        case description = "description"
+        case dateCreated = "date_created"
+        case title = "title"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ItemDataCodingKeys.self)
+            
+        mediaType = try container.decode(String.self, forKey: .mediaType)
+        nasaId = try container.decode(String.self, forKey: .nasaId)
+        description = try container.decode(String.self, forKey: .description)
+        dateCreated = try container.decode(String.self, forKey: .dateCreated)
+        title = try container.decode(String.self, forKey: .title)
+    }
 }

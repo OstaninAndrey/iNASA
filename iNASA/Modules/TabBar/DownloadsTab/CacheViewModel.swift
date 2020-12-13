@@ -22,7 +22,7 @@ class CacheViewModel {
         }
     }
     
-    func loadCache(completion: ()->()) {
+    func loadCache(completion: () -> Void) {
         articles = DatabaseHelper.shared.getAllArticles()
         completion()
     }

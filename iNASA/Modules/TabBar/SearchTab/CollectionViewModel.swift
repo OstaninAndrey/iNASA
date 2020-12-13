@@ -20,7 +20,7 @@ class CollectionViewModel {
         return galleryElements.count
     }
 
-    func getElemVM(index: Int) -> ItemViewModel? {
+    func getElementVM(index: Int) -> ItemViewModel? {
         if !galleryElements.isEmpty {
             return galleryElements[index]
         } else {
@@ -54,7 +54,7 @@ class CollectionViewModel {
                 self.galleryElements.append(ItemViewModel(item: item))
             })
             
-            self.availableHits = collection!.metadata.total_hits
+            self.availableHits = collection!.metadata.totalHits
             completion()
             print(self.count)
         }

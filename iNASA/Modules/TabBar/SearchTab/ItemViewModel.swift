@@ -13,23 +13,23 @@ class ItemViewModel {
     private let networkManager = NetworkManager()
     
     var thumbnailUrl: String {
-        return item.links[0].href
+        return item.links.first?.href ?? ""
     }
     
     var id: String {
-        return item.data[0].nasa_id
+        return item.data.first?.nasaId ?? ""
     }
     
     var description: String {
-        return item.data[0].description
+        return item.data.first?.description ?? ""
     }
     
     var title: String {
-        return item.data[0].title
+        return item.data.first?.title ?? ""
     }
     
     var dateCreated: String {
-        item.data[0].date_created
+        item.data.first?.dateCreated ?? ""
     }
     
     init(item: Item) {
@@ -38,15 +38,16 @@ class ItemViewModel {
     
     convenience init(article: Article) {
         let item = Item(links: [Link(render: "",
-                                     href: article.imgHref!,
+                                     href: article.imgHref ?? "",
                                      rel: "")],
                         href: "",
-                        data: [ItemData(media_type: "",
-                                        nasa_id: article.id!,
-                                        description: article.descriptionText!,
-                                        date_created: article.date!,
-                                        location: nil,
-                                        title: article.title!)])
+                        data: [ItemData(mediaType: "",
+                                        nasaId: article.id ?? "",
+                                        description: article.descriptionText ?? "",
+                                        dateCreated: article.date ?? "",
+                                        title: article.title ?? "")
+                        ]
+        )
     
         self.init(item: item)
     }
