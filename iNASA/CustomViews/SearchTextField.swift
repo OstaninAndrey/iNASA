@@ -22,7 +22,7 @@ class SearchTextField: UITextField {
         attributedPlaceholder = NSAttributedString(string: "Search...",
                                                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textColor = .white
-        font = UIFont.systemFont(ofSize: 18, weight: .black)
+        font = UIFont.systemFont(ofSize: K.FontSize.medium, weight: .black)
         
         // Drawing left line
         let startPoint = CGPoint(x: 0, y: frame.size.height)

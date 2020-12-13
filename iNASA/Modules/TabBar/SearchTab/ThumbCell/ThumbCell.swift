@@ -9,24 +9,19 @@ import UIKit
 
 class ThumbCell: UICollectionViewCell {
     
-    @IBOutlet weak var backView: UIView!
-    @IBOutlet weak var thumbImage: UIImageView!
+    @IBOutlet private var backView: UIView!
+    @IBOutlet private var thumbImage: UIImageView!
     private var itemVM: ItemViewModel?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         thumbImage.image = nil
+        itemVM = nil
     }
     
     func configure(itemVM: ItemViewModel) {
         self.itemVM = itemVM
         
-        // start loading photo
         itemVM.loadImage() { (img) in
             guard let safeImg = img else {
                 return

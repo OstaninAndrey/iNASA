@@ -25,17 +25,17 @@ class CustomTabBarController: UITabBarController {
     
     private func setupControllers() {
         let searchNavController = generateNavigationController(root: SearchViewController(),
-                                                               title: "NASA Search",
-                                                               image: UIImage(named: "searchTab")!)
+                                                               title: K.TabBar.mainTabName,
+                                                               image: UIImage(named: K.Image.mainTab))
         
         let loadingsNavController = generateNavigationController(root: DownloadsViewController(),
-                                                                 title: "Downloads",
-                                                                 image: UIImage(named: "loadsTab")!)
+                                                                 title: K.TabBar.downloadsTabName,
+                                                                 image: UIImage(named: K.Image.downloads))
         
         viewControllers = [searchNavController, loadingsNavController]
     }
     
-    fileprivate func generateNavigationController(root: UIViewController, title: String, image: UIImage) -> UINavigationController{
+    fileprivate func generateNavigationController(root: UIViewController, title: String, image: UIImage?) -> UINavigationController{
         root.navigationItem.title = title
         let navController = UINavigationController(rootViewController: root)
         navController.title = title

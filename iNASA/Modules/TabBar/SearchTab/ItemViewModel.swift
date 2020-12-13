@@ -10,7 +10,7 @@ import UIKit
 
 class ItemViewModel {
     private var item: Item
-    private let nwSer = NetworkManager()
+    private let networkManager = NetworkManager()
     
     var thumbnailUrl: String {
         return item.links[0].href
@@ -26,10 +26,6 @@ class ItemViewModel {
     
     var title: String {
         return item.data[0].title
-    }
-    
-    var location: String {
-        item.data[0].location ?? "---"
     }
     
     var dateCreated: String {
@@ -56,18 +52,19 @@ class ItemViewModel {
     }
     
     func loadImage(completion: @escaping (UIImage?) -> Void) {
-        if let safeData = DatabaseHelper.shared.tryToFetchArticle(with: id) {
-            completion(UIImage(data: safeData)!)
-//            print("Took from db")
+        if let safeData = DatabaseHelper.shared.tryToFetchArticle(with: id),
+           let image = UIImage(data: safeData) {
+            
+            completion(image)
         } else {
-            nwSer.loadImage(stringUrl: thumbnailUrl) { (image, error) in
+            networkManager.loadImage(stringUrl: thumbnailUrl) { (image, error) in
                 completion(image)
             }
         }
         
     }
     
-    func buttonHidden() -> Bool {
+    func buttonHiddenState() -> Bool {
         if let _ = DatabaseHelper.shared.tryToFetchArticle(with: id) {
             return true
         }

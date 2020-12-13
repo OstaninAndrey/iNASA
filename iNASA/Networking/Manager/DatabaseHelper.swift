@@ -14,7 +14,7 @@ class DatabaseHelper {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func saveLocalArticle(with item: ItemViewModel, image: UIImage) {
-        let article = NSEntityDescription.insertNewObject(forEntityName: "Article", into: context) as! Article
+        let article = NSEntityDescription.insertNewObject(forEntityName: K.EntityName.article, into: context) as! Article
         article.id = item.id
         article.image = image.pngData()
         article.date = item.dateCreated
@@ -32,9 +32,7 @@ class DatabaseHelper {
     }
     
     func tryToFetchArticle(with id: String) -> Data? {
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Article")
-        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: K.EntityName.article)
         fetchRequest.predicate = NSPredicate(format: "id = %@", "\(id)")
         
         do {
@@ -51,8 +49,7 @@ class DatabaseHelper {
     func getAllArticles() -> [Article] {
         var arr: [Article] = []
 
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Article")
-
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: K.EntityName.article)
         do {
             arr = try context.fetch(request) as! [Article]
         } catch {
@@ -63,14 +60,13 @@ class DatabaseHelper {
     }
     
     func remove(id: String) -> Bool{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Article")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: K.EntityName.article)
         
         fetchRequest.predicate = NSPredicate(format: "id = %@", "\(id)")
         
         do {
             let test = try context.fetch(fetchRequest)
-            
-            let objToDelete = test[0] as! NSManagedObject
+            let objToDelete = test.first as! NSManagedObject
             context.delete(objToDelete)
             
             do {

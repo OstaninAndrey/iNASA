@@ -10,7 +10,8 @@ import UIKit
 
 class SearchResultViewController: UIViewController {
     
-    private var collectionView: UICollectionView!
+    private var collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+                                                  collectionViewLayout: UICollectionViewFlowLayout())
     private var collectionVM: CollectionViewModel
     private let quiery: String
     
@@ -26,11 +27,10 @@ class SearchResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = quiery
         
         setupColletion()
-        collectionVM.fetchNewPortion(for: quiery) {
+        collectionVM.fetchNewPage(for: quiery) {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -47,10 +47,15 @@ class SearchResultViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let width = view.frame.width / 2 - 10
         layout.itemSize = CGSize(width: width, height: width)
+        collectionView.collectionViewLayout = layout
         
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
-                                          collectionViewLayout: layout)
         collectionView.backgroundColor = .black
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(UINib(nibName: K.ThumbCell.nibName, bundle: nil),
+                                forCellWithReuseIdentifier: K.ThumbCell.reuseID)
     }
     
     private func setupConstraints() {
@@ -64,12 +69,6 @@ class SearchResultViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         ])
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.register(UINib(nibName: K.ThumbCell.nibName, bundle: nil),
-                                forCellWithReuseIdentifier: K.ThumbCell.reuseID)
     }
     
 }
@@ -88,12 +87,11 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         }
         
         if collectionVM.lastElement(is: indexPath.item) {
-            collectionVM.fetchNewPortion(for: nil) {
+            collectionVM.fetchNewPage(for: nil) {
                 DispatchQueue.main.async {
                     collectionView.reloadData()
                 }
             }
-            
         }
         
         return cell
@@ -107,6 +105,5 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         let vc = DetailedInfoViewController(itemVM: vm)
         
         navigationController?.pushViewController(vc, animated: true)
-        
     }
 }

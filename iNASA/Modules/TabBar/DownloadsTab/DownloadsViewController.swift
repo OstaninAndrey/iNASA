@@ -13,7 +13,8 @@ import UIKit
 class DownloadsViewController: UIViewController {
     
     private let cacheVM = CacheViewModel()
-    private var tableView: UITableView!
+    private var tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+                                        style: .plain)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,6 @@ class DownloadsViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
-                                style: .plain)
         tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
@@ -60,8 +59,8 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.SavedCell.reuseID, for: indexPath) as! SavedTableViewCell
         
-        if let art = cacheVM.getElem(index: indexPath.row) {
-            cell.configure(item: art)
+        if let article = cacheVM.getElement(index: indexPath.row) {
+            cell.configure(item: article)
         }
         
         return cell
@@ -74,7 +73,7 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if let article = cacheVM.getElem(index: indexPath.row) {
+        if let article = cacheVM.getElement(index: indexPath.row) {
             let vc = DetailedInfoViewController(article: article)
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -82,17 +81,16 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: true)
-        
         tableView.setEditing(editing, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            print("trying to delete")
+            
             if cacheVM.removeAtIndex(indexPath.row) {
                 tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+                tableView.reloadData()
             }
-            
          }
     }
     

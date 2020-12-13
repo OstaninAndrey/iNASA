@@ -14,8 +14,8 @@ class CacheViewModel {
         articles.count
     }
     
-    func getElem(index: Int) -> Article? {
-        if !articles.isEmpty {
+    func getElement(index: Int) -> Article? {
+        if !articles.isEmpty, articles.count >= index {
             return articles[index]
         } else {
             return nil

@@ -11,10 +11,10 @@ import UIKit
 class CollectionViewModel {
     
     private let nwSer = NetworkManager()
-    private var galleryElements: [ItemViewModel] = []
-    private var currPage = 0
-    private var quiery = ""
-    private var availableHits = 0
+    private var galleryElements: [ItemViewModel] = .init()
+    private var currPage: Int = .init()
+    private var quiery: String = .init()
+    private var availableHits: Int = .init()
     
     var count: Int {
         return galleryElements.count
@@ -32,7 +32,7 @@ class CollectionViewModel {
         return index == galleryElements.count-1 ? true:false
     }
     
-    func fetchNewPortion(for userQuiery: String?, completion: @escaping () -> Void) {
+    func fetchNewPage(for userQuiery: String?, completion: @escaping () -> Void) {
         guard availableHits > count else {
             return
         }
@@ -63,7 +63,7 @@ class CollectionViewModel {
     
     func fetchMainScreen(completion: @escaping () -> Void) {
         galleryElements = []
-        availableHits = 101
+        availableHits = K.mainTabHits
         
         nwSer.getSearchResult(quiery: "", page: 1) { (collection, err) in
             collection?.items.forEach({ (item) in

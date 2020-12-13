@@ -14,7 +14,6 @@ public enum NASAImageLibraryAPI {
     case search(quiery: String,
                 page: Int,
                 mediaType: String = "image")
-    
 }
 
 extension NASAImageLibraryAPI: EndPointType {
@@ -25,7 +24,7 @@ extension NASAImageLibraryAPI: EndPointType {
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
             return safeUrl ?? url
         default:
-            return "https://images-api.nasa.gov/"
+            return K.Path.basePath
         }
     }
     
@@ -41,9 +40,9 @@ extension NASAImageLibraryAPI: EndPointType {
     public var path: String {
         switch self {
         case .search:
-            return "search"
+            return K.Path.search
         case .image:
-            return ""
+            return K.Path.empty
         }
     }
     
@@ -57,9 +56,9 @@ extension NASAImageLibraryAPI: EndPointType {
         case .search(let quiery, let page, let mediaType):
             return .requestParameters(bodyParameters: nil,
                                       urlParameters: [
-                                        "q": quiery,
-                                        "page": page,
-                                        "media_type": mediaType
+                                        K.ParameterOptions.quiery: quiery,
+                                        K.ParameterOptions.page: page,
+                                        K.ParameterOptions.mediaType: mediaType
                                       ])
         case .image:
             return .request

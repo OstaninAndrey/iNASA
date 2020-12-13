@@ -21,12 +21,10 @@ class DetailedInfoViewController: UIViewController {
     
     init(itemVM: ItemViewModel) {
         self.itemVM = itemVM
-        
         super.init(nibName: nil, bundle: nil)
     }
     
     convenience init(article: Article) {
-        
         self.init(itemVM: ItemViewModel(article: article))
     }
     
@@ -61,7 +59,6 @@ class DetailedInfoViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         ])
-        
     }
     
     private func setupElements() {
@@ -96,7 +93,6 @@ class DetailedInfoViewController: UIViewController {
     }
     
     private func fillElements() {
-        
         itemVM.loadImage { (image) in
             DispatchQueue.main.async {
                 if let safeImage = image {
@@ -113,24 +109,23 @@ class DetailedInfoViewController: UIViewController {
         dateCreatedLabel.text = itemVM.dateCreated
         descriptionLabel.text = itemVM.description
         
-
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle(K.ButtonTitle.save, for: .normal)
         saveButton.addTarget(self, action: #selector(self.saveButtonPressed), for: .touchUpInside)
-        saveButton.isHidden = itemVM.buttonHidden()
+        saveButton.isHidden = itemVM.buttonHiddenState()
     }
     
     private func styleElements() {
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        titleLabel.font = UIFont.systemFont(ofSize: K.FontSize.large, weight: .heavy)
         descriptionLabel.textColor = .white
         descriptionLabel.numberOfLines = 0
         dateCreatedLabel.textColor = .gray
-        dateCreatedLabel.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        dateCreatedLabel.font = UIFont.systemFont(ofSize: K.FontSize.small, weight: .light)
     }
     
     @objc private func saveButtonPressed() {
         DatabaseHelper.shared.saveLocalArticle(with: itemVM, image: imageView.image!)
-        saveButton.isHidden = itemVM.buttonHidden()
+        saveButton.isHidden = itemVM.buttonHiddenState()
     }
 }

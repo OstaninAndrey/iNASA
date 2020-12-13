@@ -14,29 +14,25 @@ class SearchViewController: UIViewController {
     
     private var searchTextField = SearchTextField()
     private var searchButton = CustomButton()
-    private var collectionView: UICollectionView!
+    private var collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+                                                  collectionViewLayout: UICollectionViewFlowLayout())
     private let stackView = UIStackView()
     private let collectionVM = CollectionViewModel()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        setupSearchElements()
+        setupCollection()
         collectionVM.fetchMainScreen {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
-        
-        setupSearchElements()
-        setupCollection()
     }
     
     private func setupSearchElements() {
-        //navigationController?.navigationBar.prefersLargeTitles = true
+        
         searchTextField.delegate = self
         searchTextField.returnKeyType = UIReturnKeyType.done
         
@@ -48,11 +44,9 @@ class SearchViewController: UIViewController {
         stackView.addArrangedSubview(searchButton)
          
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(searchButton)
-        
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        searchButton.setTitle("Find", for: .normal)
+        searchButton.setTitle(K.ButtonTitle.search, for: .normal)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         
@@ -130,12 +124,9 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vm = collectionVM.getElemVM(index: indexPath.item) else {
-            print("error getting vm")
-            return
-        }
-        let vc = DetailedInfoViewController(itemVM: vm)
+        guard let vm = collectionVM.getElemVM(index: indexPath.item) else { return }
         
+        let vc = DetailedInfoViewController(itemVM: vm)
         navigationController?.pushViewController(vc, animated: true)
         
     }
