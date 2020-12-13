@@ -59,6 +59,13 @@ class ItemViewModel {
             completion(image)
         } else {
             networkManager.loadImage(stringUrl: thumbnailUrl) { (image, error) in
+                guard error == nil else {
+                    print(error as Any)
+                    
+                    completion(nil)
+                    return
+                }
+                
                 completion(image)
             }
         }

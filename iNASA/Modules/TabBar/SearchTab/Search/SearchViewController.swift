@@ -22,6 +22,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupSearchElements()
+        setupCollection()
         collectionVM.fetchMainScreen {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -33,8 +35,6 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(true)
         
         collectionView.reloadData()
-        setupSearchElements()
-        setupCollection()
     }
     
     private func setupSearchElements() {
