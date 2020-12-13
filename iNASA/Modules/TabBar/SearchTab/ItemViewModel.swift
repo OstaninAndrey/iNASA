@@ -65,6 +65,10 @@ class ItemViewModel {
         
     }
     
+    func cancelImageLoading() {
+        networkManager.cancelLoading()
+    }
+    
     func buttonHiddenState() -> Bool {
         if let _ = DatabaseHelper.shared.tryToFetchArticle(with: id) {
             return true

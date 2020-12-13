@@ -10,11 +10,11 @@ import UIKit
 
 class CollectionViewModel {
     
-    private let nwSer = NetworkManager()
-    private var galleryElements: [ItemViewModel] = .init()
-    private var currPage: Int = .init()
+    private let networkManager = NetworkManager()
+    private var galleryElements: [ItemViewModel] = []
+    private var currentPage: Int = .init()
     private var quiery: String = .init()
-    private var availableHits: Int = .init()
+    private var availableHits = K.mainTabHits
     
     var count: Int {
         return galleryElements.count
@@ -39,24 +39,24 @@ class CollectionViewModel {
         
         if let q = userQuiery {
             self.quiery = q
-            currPage = 0
+            currentPage = 0
             galleryElements = []
         }
     
-        currPage += 1
-        nwSer.getSearchResult(quiery: self.quiery, page: currPage) { (collection, err) in
+        currentPage += 1
+        networkManager.getSearchResult(quiery: self.quiery, page: currentPage) { [weak self] (collection, err) in
             guard err == nil else {
                 print(err!)
                 return
             }
             
             collection?.items.forEach({ (item) in
-                self.galleryElements.append(ItemViewModel(item: item))
+                self?.galleryElements.append(ItemViewModel(item: item))
             })
             
-            self.availableHits = collection!.metadata.totalHits
+            self?.availableHits = collection!.metadata.totalHits
             completion()
-            print(self.count)
+            print(self?.count as Any)
         }
         
     }
@@ -65,12 +65,12 @@ class CollectionViewModel {
         galleryElements = []
         availableHits = K.mainTabHits
         
-        nwSer.getSearchResult(quiery: "", page: 1) { (collection, err) in
+        networkManager.getSearchResult(quiery: "", page: 1) { [weak self] (collection, err) in
             collection?.items.forEach({ (item) in
                 
-                self.galleryElements.append(ItemViewModel(item: item))
+                self?.galleryElements.append(ItemViewModel(item: item))
             })
-            print(self.count)
+            print(self?.count as Any)
             completion()
         }
     }

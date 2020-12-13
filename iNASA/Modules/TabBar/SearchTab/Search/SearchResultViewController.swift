@@ -12,7 +12,7 @@ class SearchResultViewController: UIViewController {
     
     private var collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
                                                   collectionViewLayout: UICollectionViewFlowLayout())
-    private var collectionVM: CollectionViewModel
+    private var collectionVM = CollectionViewModel()
     private let quiery: String
     
     init(viewModel: CollectionViewModel, quiery: String) {
@@ -45,7 +45,8 @@ class SearchResultViewController: UIViewController {
     
     private func setupColletion() {
         let layout = UICollectionViewFlowLayout()
-        let width = view.frame.width / 2 - 10
+        let width = view.frame.width / 2 - 5
+        layout.minimumLineSpacing = 10
         layout.itemSize = CGSize(width: width, height: width)
         collectionView.collectionViewLayout = layout
         

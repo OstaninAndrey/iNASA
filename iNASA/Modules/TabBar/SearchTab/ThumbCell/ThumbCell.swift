@@ -15,6 +15,7 @@ class ThumbCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        itemVM?.cancelImageLoading()
         thumbImage.image = nil
         itemVM = nil
     }

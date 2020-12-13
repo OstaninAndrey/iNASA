@@ -7,7 +7,7 @@
 
 import Foundation
 
-// На перспективу
+// для расширений
 
 public struct JSONParameterEncoder: ParameterEncoder {
     

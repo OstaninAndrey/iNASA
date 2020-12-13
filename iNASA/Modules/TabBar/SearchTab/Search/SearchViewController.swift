@@ -19,16 +19,22 @@ class SearchViewController: UIViewController {
     private let stackView = UIStackView()
     private let collectionVM = CollectionViewModel()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        setupSearchElements()
-        setupCollection()
         collectionVM.fetchMainScreen {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        collectionView.reloadData()
+        setupSearchElements()
+        setupCollection()
     }
     
     private func setupSearchElements() {
@@ -63,11 +69,10 @@ class SearchViewController: UIViewController {
     
     private func setupCollection() {
         let layout = UICollectionViewFlowLayout()
-        let width = view.frame.width / 2 - 10
+        let width = view.frame.width / 2 - 5
         layout.itemSize = CGSize(width: width, height: width)
-        
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
-                                          collectionViewLayout: layout)
+        layout.minimumLineSpacing = 10
+        collectionView.collectionViewLayout = layout
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -75,8 +80,8 @@ class SearchViewController: UIViewController {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         ])
         
         collectionView.delegate = self
@@ -87,7 +92,8 @@ class SearchViewController: UIViewController {
     }
     
     @objc private func searchButtonPressed() {
-        let vc = SearchResultViewController(viewModel: collectionVM,
+        let newVM = CollectionViewModel()
+        let vc = SearchResultViewController(viewModel: newVM,
                                             quiery: searchTextField.text!)
         navigationController?.pushViewController(vc, animated: true)
         searchTextField.resignFirstResponder()

@@ -35,7 +35,7 @@ class NetworkManager {
     
     func getSearchResult(quiery: String, page: Int, completion: @escaping (_ collection: CollectionModel?, _ error: String?) -> Void) {
         
-        router.request(.search(quiery: quiery, page: page)) { [unowned self] (data, response, error) in
+        router.request(.search(quiery: quiery, page: page)) { (data, response, error) in
             if error != nil {
                 completion(nil, "Check network connection")
             }
@@ -94,5 +94,8 @@ class NetworkManager {
         }
     }
     
+    func cancelLoading() {
+        router.cancel()
+    }
     
 }
