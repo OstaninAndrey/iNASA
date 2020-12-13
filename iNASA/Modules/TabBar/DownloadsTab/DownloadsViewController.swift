@@ -32,6 +32,7 @@ class DownloadsViewController: UIViewController {
     
     private func setupTableView() {
         tableView.backgroundColor = .black
+        tableView.separatorColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.SavedCell.nibName, bundle: nil), forCellReuseIdentifier: K.SavedCell.reuseID)

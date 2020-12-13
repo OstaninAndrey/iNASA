@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="403" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7s-rT-bra">
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7s-rT-bra">
                         <rect key="frame" x="0.0" y="0.0" width="403" height="200"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6rz-sq-NbL">
@@ -63,6 +63,7 @@
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="o7s-rT-bra" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Nc4-YE-q6u"/>
                     <constraint firstAttribute="bottom" secondItem="o7s-rT-bra" secondAttribute="bottom" id="g4E-iq-Rd5"/>
@@ -71,6 +72,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="backView" destination="o7s-rT-bra" id="K1j-Kz-wm1"/>
                 <outlet property="dateLabel" destination="iht-2t-qjX" id="q69-cA-YcC"/>
