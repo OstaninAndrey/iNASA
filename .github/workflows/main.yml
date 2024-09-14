@@ -1,36 +1,50 @@
-workflow:
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'push'
-      when: always
-    - when: never
+# name: CI/CD Pipeline
 
-stages:
-  - build
-  # - test
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-variables:
-    LC_ALL: "en_US.UTF-8"
-    LANG: "en_US.UTF-8"
+# jobs:
+#   build:
+#     runs-on: macos-latest
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v4
 
-# .general: &general_config
-#   before_script:
-#     - pod install
+#     - name: Set up Xcode
+#       uses: maxim-lobanov/setup-xcode@v1
+#       with:
+#         xcode-version: '13.0'
 
-build:
-  stage: build
-  # <<: *general_config
-  tags:
-    - job:build
-  script:
-    - xcodebuild clean -workspace iNASA.xcodeproj -scheme "Scheme debug"
-    - xcodebuild build -workspace iNASA.xcodeproj -scheme "Scheme debug" -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.5'
-    - './scripts/youTrack.py "$CI_MERGE_REQUEST_TITLE" "Review"'
+#     - name: Install dependencies
+#       run: swift package resolve
 
-# test:
-#   stage: test
-#   <<: *general_config
-#   tags: 
-#     - job:test
-#   script: 
-#     - xcodebuild clean -workspace iNASA.xcodeproj -scheme " Scheme debug" | xcpretty
-#     - xcodebuild test -workspace iNASA.xcodeproj -scheme ProjectTests -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.5'
+    # - name: Clean project
+    #   run: xcodebuild clean -workspace iNASA.xcodeproj -scheme "Debug"
+
+    # - name: Build project
+    #   run: xcodebuild build -workspace iNASA.xcodeproj -scheme "Debug" -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.5'
+
+name: iOS starter workflow
+
+on:
+  push:
+    branches: 
+    - '*'
+
+jobs:
+  build:
+    name: Build and Test default scheme using any available iPhone simulator
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4           
+      - name: Clean project
+        run: xcodebuild clean -workspace iNASA.xcworkspace -scheme "iNASA"
+      - name: Build project
+        run: xcodebuild build -workspace iNASA.xcworkspace -scheme "iNASA" -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.5'
