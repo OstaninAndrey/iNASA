@@ -20,6 +20,7 @@ public struct K {
     }
     
     static let containerName = "Cache"
+    static let containerName2 = "TestChange11111"
     
     struct MediaType {
         static let image = "image"
