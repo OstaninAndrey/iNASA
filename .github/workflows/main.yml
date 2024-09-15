@@ -6,14 +6,28 @@ on:
     - '*'
 
 jobs:
+#  swiftLint:
+#    name: SwiftLint
+
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build and Test
     runs-on: macos-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4           
+        uses: actions/checkout@v4
+        
+#      - name: Install CocoaPods
+#        run: pod install
+          
       - name: Clean project
-        run: xcodebuild clean -workspace iNASA.xcworkspace -scheme "iNASA" CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO"
+        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" clean
+        
       - name: Build project
-        run: xcodebuild build -workspace iNASA.xcworkspace -scheme "iNASA" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO"
+        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" build
+        
+      - name: Clean project
+        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" clean
+        
+      - name: Run Tests
+        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASATests" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" test
