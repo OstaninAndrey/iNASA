@@ -17,8 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install CocoaPods
-        run: pod install
+#      - name: Install CocoaPods
+#        run: pod install
           
       - name: Clean project
         run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" clean
