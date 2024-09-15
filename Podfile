@@ -6,5 +6,6 @@ target 'iNASA' do
   use_frameworks!
 
   # Pods for iNASA
+  pod 'SwiftLint'
 
 end

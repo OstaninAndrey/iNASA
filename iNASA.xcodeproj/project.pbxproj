@@ -39,12 +39,12 @@
 		22F4F3DE2580EAB200764D2C /* SavedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22F4F3DC2580EAB200764D2C /* SavedTableViewCell.xib */; };
 		22F4F3E425812DA800764D2C /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F3E325812DA800764D2C /* SearchTextField.swift */; };
 		22F4F3ED258152DC00764D2C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F3EC258152DC00764D2C /* CustomButton.swift */; };
-		702D13272C9740E700548342 /* CollectionVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D13262C9740E700548342 /* CollectionVMTests.swift */; };
+		702D133A2C9752CC00548342 /* CollectionVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D13262C9740E700548342 /* CollectionVMTests.swift */; };
 		B026B6F65CEAEDE16292867F /* Pods_iNASA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89C8DFA146BDB6C684966A5 /* Pods_iNASA.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		702D13282C9740E700548342 /* PBXContainerItemProxy */ = {
+		702D13352C9752C600548342 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22C5228F257FC7D600819B18 /* Project object */;
 			proxyType = 1;
@@ -89,8 +89,8 @@
 		22F4F3DC2580EAB200764D2C /* SavedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedTableViewCell.xib; sourceTree = "<group>"; };
 		22F4F3E325812DA800764D2C /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		22F4F3EC258152DC00764D2C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		702D13242C9740E700548342 /* iNASATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iNASATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		702D13262C9740E700548342 /* CollectionVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVMTests.swift; sourceTree = "<group>"; };
+		702D13312C9752C600548342 /* iNASATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iNASATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A0CC0A1DCF7EA1F5D94D95 /* Pods-iNASA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNASA.release.xcconfig"; path = "Target Support Files/Pods-iNASA/Pods-iNASA.release.xcconfig"; sourceTree = "<group>"; };
 		E89C8DFA146BDB6C684966A5 /* Pods_iNASA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iNASA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -104,7 +104,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		702D13212C9740E700548342 /* Frameworks */ = {
+		702D132E2C9752C600548342 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				22C52299257FC7D700819B18 /* iNASA */,
-				702D13252C9740E700548342 /* iNASATests */,
+				702D13322C9752C600548342 /* iNASATests */,
 				22C52298257FC7D700819B18 /* Products */,
 				F631135B93D9BEC906E830FB /* Pods */,
 				7574987EAF9D2D23F9C34468 /* Frameworks */,
@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				22C52297257FC7D700819B18 /* iNASA.app */,
-				702D13242C9740E700548342 /* iNASATests.xctest */,
+				702D13312C9752C600548342 /* iNASATests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,7 +294,7 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		702D13252C9740E700548342 /* iNASATests */ = {
+		702D13322C9752C600548342 /* iNASATests */ = {
 			isa = PBXGroup;
 			children = (
 				702D13262C9740E700548342 /* CollectionVMTests.swift */,
@@ -340,22 +340,22 @@
 			productReference = 22C52297257FC7D700819B18 /* iNASA.app */;
 			productType = "com.apple.product-type.application";
 		};
-		702D13232C9740E700548342 /* iNASATests */ = {
+		702D13302C9752C600548342 /* iNASATests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 702D132C2C9740E700548342 /* Build configuration list for PBXNativeTarget "iNASATests" */;
+			buildConfigurationList = 702D13372C9752C600548342 /* Build configuration list for PBXNativeTarget "iNASATests" */;
 			buildPhases = (
-				702D13202C9740E700548342 /* Sources */,
-				702D13212C9740E700548342 /* Frameworks */,
-				702D13222C9740E700548342 /* Resources */,
+				702D132D2C9752C600548342 /* Sources */,
+				702D132E2C9752C600548342 /* Frameworks */,
+				702D132F2C9752C600548342 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				702D13292C9740E700548342 /* PBXTargetDependency */,
+				702D13362C9752C600548342 /* PBXTargetDependency */,
 			);
 			name = iNASATests;
 			productName = iNASATests;
-			productReference = 702D13242C9740E700548342 /* iNASATests.xctest */;
+			productReference = 702D13312C9752C600548342 /* iNASATests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -370,7 +370,7 @@
 					22C52296257FC7D700819B18 = {
 						CreatedOnToolsVersion = 12.2;
 					};
-					702D13232C9740E700548342 = {
+					702D13302C9752C600548342 = {
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = 22C52296257FC7D700819B18;
 					};
@@ -390,7 +390,7 @@
 			projectRoot = "";
 			targets = (
 				22C52296257FC7D700819B18 /* iNASA */,
-				702D13232C9740E700548342 /* iNASATests */,
+				702D13302C9752C600548342 /* iNASATests */,
 			);
 		};
 /* End PBXProject section */
@@ -407,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		702D13222C9740E700548342 /* Resources */ = {
+		702D132F2C9752C600548342 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -477,21 +477,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		702D13202C9740E700548342 /* Sources */ = {
+		702D132D2C9752C600548342 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				702D13272C9740E700548342 /* CollectionVMTests.swift in Sources */,
+				702D133A2C9752CC00548342 /* CollectionVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		702D13292C9740E700548342 /* PBXTargetDependency */ = {
+		702D13362C9752C600548342 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 22C52296257FC7D700819B18 /* iNASA */;
-			targetProxy = 702D13282C9740E700548342 /* PBXContainerItemProxy */;
+			targetProxy = 702D13352C9752C600548342 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -669,27 +669,21 @@
 			};
 			name = Release;
 		};
-		702D132A2C9740E700548342 /* Debug */ = {
+		702D13382C9752C600548342 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ao.iNASATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -698,27 +692,21 @@
 			};
 			name = Debug;
 		};
-		702D132B2C9740E700548342 /* Release */ = {
+		702D13392C9752C600548342 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ao.iNASATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -747,11 +735,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		702D132C2C9740E700548342 /* Build configuration list for PBXNativeTarget "iNASATests" */ = {
+		702D13372C9752C600548342 /* Build configuration list for PBXNativeTarget "iNASATests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				702D132A2C9740E700548342 /* Debug */,
-				702D132B2C9740E700548342 /* Release */,
+				702D13382C9752C600548342 /* Debug */,
+				702D13392C9752C600548342 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
