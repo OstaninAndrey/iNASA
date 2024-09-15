@@ -40,7 +40,6 @@
 		22F4F3E425812DA800764D2C /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F3E325812DA800764D2C /* SearchTextField.swift */; };
 		22F4F3ED258152DC00764D2C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F4F3EC258152DC00764D2C /* CustomButton.swift */; };
 		702D133A2C9752CC00548342 /* CollectionVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D13262C9740E700548342 /* CollectionVMTests.swift */; };
-		B026B6F65CEAEDE16292867F /* Pods_iNASA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89C8DFA146BDB6C684966A5 /* Pods_iNASA.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1BA0DE9F468620A8017B88DE /* Pods-iNASA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNASA.debug.xcconfig"; path = "Target Support Files/Pods-iNASA/Pods-iNASA.debug.xcconfig"; sourceTree = "<group>"; };
 		221210F02580082B007B456D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		221210F425800841007B456D /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		221210F725800893007B456D /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
@@ -91,8 +89,6 @@
 		22F4F3EC258152DC00764D2C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		702D13262C9740E700548342 /* CollectionVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVMTests.swift; sourceTree = "<group>"; };
 		702D13312C9752C600548342 /* iNASATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iNASATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		71A0CC0A1DCF7EA1F5D94D95 /* Pods-iNASA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNASA.release.xcconfig"; path = "Target Support Files/Pods-iNASA/Pods-iNASA.release.xcconfig"; sourceTree = "<group>"; };
-		E89C8DFA146BDB6C684966A5 /* Pods_iNASA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iNASA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B026B6F65CEAEDE16292867F /* Pods_iNASA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +164,6 @@
 				702D13322C9752C600548342 /* iNASATests */,
 				22C52298257FC7D700819B18 /* Products */,
 				F631135B93D9BEC906E830FB /* Pods */,
-				7574987EAF9D2D23F9C34468 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,19 +296,9 @@
 			path = iNASATests;
 			sourceTree = "<group>";
 		};
-		7574987EAF9D2D23F9C34468 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E89C8DFA146BDB6C684966A5 /* Pods_iNASA.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F631135B93D9BEC906E830FB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1BA0DE9F468620A8017B88DE /* Pods-iNASA.debug.xcconfig */,
-				71A0CC0A1DCF7EA1F5D94D95 /* Pods-iNASA.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -326,7 +310,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22C522AB257FC7DF00819B18 /* Build configuration list for PBXNativeTarget "iNASA" */;
 			buildPhases = (
-				5216598ACBF8103DEC3E081D /* [CP] Check Pods Manifest.lock */,
 				22C52293257FC7D700819B18 /* Sources */,
 				22C52294257FC7D700819B18 /* Frameworks */,
 				22C52295257FC7D700819B18 /* Resources */,
@@ -415,31 +398,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5216598ACBF8103DEC3E081D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iNASA-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		22C52293257FC7D700819B18 /* Sources */ = {
@@ -625,7 +583,6 @@
 		};
 		22C522AC257FC7DF00819B18 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BA0DE9F468620A8017B88DE /* Pods-iNASA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -648,7 +605,6 @@
 		};
 		22C522AD257FC7DF00819B18 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71A0CC0A1DCF7EA1F5D94D95 /* Pods-iNASA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
