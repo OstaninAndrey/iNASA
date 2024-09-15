@@ -21,10 +21,14 @@ jobs:
         run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" clean
         
       - name: Build project
-        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" build
+        run: | 
+          pod install
+          xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" build
       
       - name: Clean project
         run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" clean
       
       - name: Run Tests
-        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASATests" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" test
+        run: | 
+          pod install
+          xcodebuild -workspace iNASA.xcworkspace -scheme "iNASATests" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" test
