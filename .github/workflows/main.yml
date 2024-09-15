@@ -21,4 +21,4 @@ jobs:
         run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" build
       
       - name: Run Tests
-        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASATests" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" test
+        run: xcodebuild -workspace iNASA.xcworkspace -scheme "iNASA" -destination 'platform=iOS Simulator,name=iPhone 15,OS=17' CODE_SIGNING_REQUIRED="NO" CODE_SIGNING_ALLOWED="NO" test
