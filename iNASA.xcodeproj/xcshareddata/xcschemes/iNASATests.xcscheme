@@ -18,7 +18,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "702D13232C9740E700548342"
+               BlueprintIdentifier = "702D13302C9752C600548342"
                BuildableName = "iNASATests.xctest"
                BlueprintName = "iNASATests"
                ReferencedContainer = "container:iNASA.xcodeproj">
