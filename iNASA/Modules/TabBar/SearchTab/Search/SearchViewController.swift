@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     private var collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
                                                   collectionViewLayout: UICollectionViewFlowLayout())
     private let stackView = UIStackView()
-    private let collectionVM = CollectionViewModel()
+    private let collectionVM = CollectionViewModel(networkManager: NetworkManager())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +92,7 @@ class SearchViewController: UIViewController {
     }
     
     @objc private func searchButtonPressed() {
-        let newVM = CollectionViewModel()
+        let newVM = CollectionViewModel(networkManager: NetworkManager())
         let vc = SearchResultViewController(viewModel: newVM,
                                             quiery: searchTextField.text!)
         navigationController?.pushViewController(vc, animated: true)

@@ -10,11 +10,15 @@ import UIKit
 
 class CollectionViewModel {
     
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManager
     private var galleryElements: [ItemViewModel] = []
     private var currentPage: Int = .init()
     private var quiery: String = .init()
     private var availableHits = K.mainTabHits
+    
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
+    }
     
     var count: Int {
         return galleryElements.count
